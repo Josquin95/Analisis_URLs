@@ -1,5 +1,5 @@
-# SOSDCAW
+# DCAW
 
-Sistema Open Source para Detección de Ataques Web (PDG)
+Sistema Open Source para Detección y Control de Ataques Web (PDG)
 
 > *Nota:* Cambiar nombre del proyecto a *Melusin* (Por validar) 
