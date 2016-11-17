@@ -1,4 +1,4 @@
-# DCAW
+# SDCAW
 
 Sistema Open Source para Detección y Control de Ataques Web (PDG)
 
