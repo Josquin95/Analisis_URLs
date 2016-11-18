@@ -5,9 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-
-import org.omg.CORBA.portable.Delegate;
 
 public class Preprocesesamiento {
 
@@ -50,7 +47,6 @@ public class Preprocesesamiento {
 		while ((line = bufferedReader.readLine()) != null) {
 			getPeticion(line);
 		}
-
 		System.err.println("GET: " + conteoPeticiones[PETICION_GET] + ", POST: " + conteoPeticiones[PETICION_POST]
 				+ ", PUT: " + conteoPeticiones[PETICION_PUT] + ", DELETE: " + conteoPeticiones[PETICION_DELETE]);
 		printWriter.close();
@@ -153,11 +149,7 @@ public class Preprocesesamiento {
 		}
 		printWriter.print(";" + contadorCaracteres[15]);
 	}
-
-	public void reporte() {
-
-	}
-
+	
 	public static void main(String[] args) {
 		try {
 			new Preprocesesamiento(true).read("./resources/anomalousTrafficTest.txt");
