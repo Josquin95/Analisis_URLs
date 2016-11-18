@@ -25064,4 +25064,4 @@ GET;/tienda1/miembros/editar.jsp?modo=registro&login=beaumont&password=quEratIti
 POST;/tienda1/miembros/editar.jsp;49;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;5;6
 GET;/tienda1/miembros/editar.jsp.bak;53;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;2;5;7
 GET;/tienda1/imagenes/3.gif/;45;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;6;7
-GET;/tienda1/imagenes/nuestratierra.jpg.BAK;60;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;2;5;7
+GET;/tienda1/imagenes/nuestratierra.jpg.BAK;60;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;2;5;7END_DATASET_ANOMALOUS
