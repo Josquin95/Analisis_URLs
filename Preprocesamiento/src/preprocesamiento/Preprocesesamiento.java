@@ -12,13 +12,17 @@ public class Preprocesesamiento {
 	// CONSTANTES
 	// -------------------------------------------------------------------------
 
+	public final static String RUTA_CSV = "./resources/dataset";
+
+	public final static String MESSAGE_FINAL = "END_DATASET_ANOMALOUS";
+
 	public final static int PETICION_GET = 0;
 	public final static int PETICION_POST = 1;
 	public final static int PETICION_PUT = 2;
 	public final static int PETICION_DELETE = 3;
 	public final static String[] CARACTERES_ESPECIALES = { "!", "\"", "#", "$", "%", "&", "\'", "(", ")", "*", "+", ",",
 			"-", ".", "/" };
-	public final static String[] EXTENSIONES_ARCHIVOS = {"EXE","JAVA","OLD","BAK"};
+	public final static String[] EXTENSIONES_ARCHIVOS = { "EXE", "JAVA", "OLD", "BAK" };
 
 	// --------------------------------------------------------------------------
 	// ATRIBUTOS
@@ -28,16 +32,44 @@ public class Preprocesesamiento {
 
 	private int[] conteoPeticiones = { 0, 0, 0, 0 };
 
-	public Preprocesesamiento(boolean maligno) throws FileNotFoundException {
-		printWriter = maligno == true ? new PrintWriter("./resources/datasetAnomalous.csv")
-				: new PrintWriter("./resources/dataset.csv");
-		printWriter.println(
-				"Peticion;URL;URL_Length;EXE;JAVA;OLD;BAK;Admiracion;ComillasDobles;Numeral;Pesos;Porcentaje;Ampersand;ComillaSimple;ParantesisAbierto;ParentesisCerrado;Asterisco;Mas;Coma;Menos;Punto;Slash;TotalCaracteres;Host;Cookie;Connection");
+	public Preprocesesamiento(String ruta) throws IOException {
+		printWriter = new PrintWriter(ruta);
+		String content = reload(ruta);
+		if (content.isEmpty() || content.contains(MESSAGE_FINAL)) {
+			printWriter.println(
+					"Peticion;URL;URL_Length;EXE;JAVA;OLD;BAK;Admiracion;ComillasDobles;Numeral;Pesos;Porcentaje;Ampersand;ComillaSimple;ParantesisAbierto;ParentesisCerrado;Asterisco;Mas;Coma;Menos;Punto;Slash;TotalCaracteres;Host;Cookie;Connection");
+		} else {
+			printWriter.println(content);
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------
 	// METODOS
 	// ---------------------------------------------------------------------------
+
+	/**
+	 * Recarga informacion contenida en el dataset
+	 * 
+	 * @param file
+	 *            ruta del dataset
+	 * @return String con toda la informacion del dataset
+	 * @throws IOException
+	 *             Lanza una excepcion con los aspectos relacionados a carga del
+	 *             archivo
+	 */
+	public String reload(String file) throws IOException {
+		FileReader fileReader = new FileReader(file);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		String line = bufferedReader.readLine();
+		String message = "";
+		while (line != null) {
+			message += line + "\n";
+			line = bufferedReader.readLine();
+		}
+		bufferedReader.close();
+		return message;
+	}
 
 	public void read(String file) throws FileNotFoundException, IOException {
 		FileReader fileReader = new FileReader(file);
@@ -49,6 +81,7 @@ public class Preprocesesamiento {
 		}
 		System.err.println("GET: " + conteoPeticiones[PETICION_GET] + ", POST: " + conteoPeticiones[PETICION_POST]
 				+ ", PUT: " + conteoPeticiones[PETICION_PUT] + ", DELETE: " + conteoPeticiones[PETICION_DELETE]);
+		printWriter.println(MESSAGE_FINAL);
 		printWriter.close();
 		bufferedReader.close();
 	}
@@ -73,19 +106,23 @@ public class Preprocesesamiento {
 		switch (contienePeticion(line)) {
 		case PETICION_GET:
 			GET(line);
-			System.out.println("PETICION_GET -> encontrada, numero:" + conteoPeticiones[PETICION_GET]++);
+			 System.out.println("PETICION_GET -> encontrada, numero:" +
+			 conteoPeticiones[PETICION_GET]++);
 			break;
 		case PETICION_POST:
 			POST(line);
-			System.out.println("PETICION_POST -> encontrada, numero:" + conteoPeticiones[PETICION_POST]++);
+			 System.out.println("PETICION_POST -> encontrada, numero:" +
+			 conteoPeticiones[PETICION_POST]++);
 			break;
 		case PETICION_PUT:
 			PUT(line);
-			System.out.println("PETICION_PUT -> encontrada, numero:" + conteoPeticiones[PETICION_PUT]++);
+			 System.out.println("PETICION_PUT -> encontrada, numero:" +
+			 conteoPeticiones[PETICION_PUT]++);
 			break;
 		case PETICION_DELETE:
 			DELETE(line);
-			System.out.println("PETICION_DELETE -> encontrada, numero:" + (conteoPeticiones[PETICION_DELETE]++));
+			 System.out.println("PETICION_DELETE -> encontrada, numero:" +
+			 (conteoPeticiones[PETICION_DELETE]++));
 			break;
 		default:
 			break;
@@ -109,8 +146,8 @@ public class Preprocesesamiento {
 	public void DELETE(String line) {
 		analisisURL(line);
 	}
-	
-	public void analisisURL(String URL){
+
+	public void analisisURL(String URL) {
 		String temp[] = URL.split(" ");
 		int[] contadorCaracteres = new int[16];
 		for (int i = 0; i < temp[1].length(); i++) {
@@ -149,11 +186,11 @@ public class Preprocesesamiento {
 		}
 		printWriter.print(";" + contadorCaracteres[15]);
 	}
-	
+
 	public static void main(String[] args) {
 		try {
-			new Preprocesesamiento(true).read("./resources/anomalousTrafficTest.txt");
-			new Preprocesesamiento(false).read("./resources/normalTrafficTraining.txt");
+			new Preprocesesamiento(RUTA_CSV + "_B.csv").read("./resources/anomalousTrafficTest.txt");
+			new Preprocesesamiento(RUTA_CSV + "_N.csv").read("./resources/normalTrafficTraining.txt");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
