@@ -185,6 +185,7 @@ public class Preprocesesamiento {
 			printWriter.print(";" + contadorCaracteres[i]);
 		}
 		printWriter.print(";" + contadorCaracteres[15]);
+		
 	}
 
 	public static void main(String[] args) {
