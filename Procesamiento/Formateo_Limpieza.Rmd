@@ -9,16 +9,59 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Outliers
+## Descripcion
 
-Explicacion
+El siguiente dataset consta de una serie de caracteristicas necesarias para la deteccion de peticiones url. Se procede entonces a cargar el dataset
+
+El *dataset_B* consta de una serie de peticiones de url maligno
+```{r}
+dataset_B <- read.csv("~/SDCAW/Preprocesamiento/resources/dataset_B.csv", sep=";")
+```
+
+El *dataset_N* consta de una serie de peticiones de url benigno
+```{r}
+dataset_N <- read.csv("~/SDCAW/Preprocesamiento/resources/dataset_N.csv", sep=";")
+```
+
+## Outliers
 
 Importacion de funciones para el formateo y limpieza de datos.
 ```{r}
 source('~/SDCAW/Procesamiento/Limpieza_Datos.R', encoding = 'UTF-8')
 ```
 
+Se aplica el formato al dataset
 
+```{r}
+dataset_B <- as.data.frame(dataset_B)
+dataset_B$Peticion <- as.factor(dataset_B$Peticion)
+dataset_B$URL <- as.character(dataset_B$URL)
+dataset_B$URL_Length <- as.numeric(dataset_B$URL_Length)
+dataset_B$EXE <- as.numeric(dataset_B$EXE)
+dataset_B$JAVA <- as.numeric(dataset_B$JAVA)
+dataset_B$OLD <- as.numeric(dataset_B$OLD)
+dataset_B$BAK <- as.numeric(dataset_B$BAK)
+dataset_B$Admiracion <- as.numeric(dataset_B$Admiracion)
+dataset_B$ComillasDobles <- as.numeric(dataset_B$ComillasDobles)
+dataset_B$Numeral <- as.numeric(dataset_B$Numeral)
+dataset_B$Pesos <- as.numeric(dataset_B$Pesos)
+dataset_B$Porcentaje <- as.numeric(dataset_B$Porcentaje)
+dataset_B$Ampersand <- as.numeric(dataset_B$ComillaSimple)
+dataset_B$ParantesisAbierto <- as.numeric(dataset_B$ParantesisAbierto)
+dataset_B$ParentesisCerrado <- as.numeric(dataset_B$ParentesisCerrado)
+dataset_B$Asterisco <- as.numeric(dataset_B$Asterisco)
+dataset_B$Mas <- as.numeric(dataset_B$Mas)
+dataset_B$Coma <- as.numeric(dataset_B$Coma)
+dataset_B$Menos <- as.numeric(dataset_B$Menos)
+dataset_B$Punto <- as.numeric(dataset_B$Punto)
+dataset_B$Slash <- as.numeric(dataset_B$Slash)
+dataset_B$TotalCaracteres <- as.numeric(dataset_B$TotalCaracteres)
+dataset_B$Host <- as.character(dataset_B$Host)
+dataset_B$Cookie <- as.character(dataset_B$Cookie)
+dataset_B$Connection <- as.character(dataset_B$Connection)
+```
+
+A continuacion se grafican los outliers del dataset maligno
 ```{r}
 outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$URL_Length)
 outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$EXE)
@@ -41,6 +84,62 @@ outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = datase
 outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$Punto)
 outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$Slash)
 outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$TotalCaracteres)
-
 ```
 
+> ----------------------------------------------------------------------
+
+Se acomoda el formato para el *dataset_N*
+
+```{r}
+dataset_N <- as.data.frame(dataset_N)
+dataset_N$Peticion <- as.factor(dataset_N$Peticion)
+dataset_N$URL <- as.character(dataset_N$URL)
+dataset_N$URL_Length <- as.numeric(dataset_N$URL_Length)
+dataset_N$EXE <- as.numeric(dataset_N$EXE)
+dataset_N$JAVA <- as.numeric(dataset_N$JAVA)
+dataset_N$OLD <- as.numeric(dataset_N$OLD)
+dataset_N$BAK <- as.numeric(dataset_N$BAK)
+dataset_N$Admiracion <- as.numeric(dataset_N$Admiracion)
+dataset_N$ComillasDobles <- as.numeric(dataset_N$ComillasDobles)
+dataset_N$Numeral <- as.numeric(dataset_N$Numeral)
+dataset_N$Pesos <- as.numeric(dataset_N$Pesos)
+dataset_N$Porcentaje <- as.numeric(dataset_N$Porcentaje)
+dataset_N$Ampersand <- as.numeric(dataset_N$ComillaSimple)
+dataset_N$ParantesisAbierto <- as.numeric(dataset_N$ParantesisAbierto)
+dataset_N$ParentesisCerrado <- as.numeric(dataset_N$ParentesisCerrado)
+dataset_N$Asterisco <- as.numeric(dataset_N$Asterisco)
+dataset_N$Mas <- as.numeric(dataset_N$Mas)
+dataset_N$Coma <- as.numeric(dataset_N$Coma)
+dataset_N$Menos <- as.numeric(dataset_N$Menos)
+dataset_N$Punto <- as.numeric(dataset_N$Punto)
+dataset_N$Slash <- as.numeric(dataset_N$Slash)
+dataset_N$TotalCaracteres <- as.numeric(dataset_N$TotalCaracteres)
+dataset_N$Host <- as.character(dataset_N$Host)
+dataset_N$Cookie <- as.character(dataset_N$Cookie)
+dataset_N$Connection <- as.character(dataset_N$Connection)
+```
+
+A continuacion se grafican los outliers del dataset benigno
+```{r}
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$URL_Length)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$EXE)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$JAVA)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$OLD)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$BAK)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$Admiracion)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$ComillasDobles)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$Numeral)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$Pesos)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$Porcentaje)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$Ampersand)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$ComillaSimple)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$ParantesisAbierto)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$ParentesisCerrado)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$Asterisco)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$Mas)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$Coma)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$Menos)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$Punto)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$Slash)
+outlier_url(dataset = dataset_N,variablA = dataset_N$Peticion,variableB = dataset_N$TotalCaracteres)
+```
