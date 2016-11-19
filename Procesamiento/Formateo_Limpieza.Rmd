@@ -1,0 +1,46 @@
+---
+title: "Formato de dataset"
+author: "Jose Luis Osorio Quintero"
+date: "18 de noviembre de 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Outliers
+
+Explicacion
+
+Importacion de funciones para el formateo y limpieza de datos.
+```{r}
+source('~/SDCAW/Procesamiento/Limpieza_Datos.R', encoding = 'UTF-8')
+```
+
+
+```{r}
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$URL_Length)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$EXE)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$JAVA)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$OLD)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$BAK)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$Admiracion)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$ComillasDobles)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$Numeral)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$Pesos)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$Porcentaje)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$Ampersand)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$ComillaSimple)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$ParantesisAbierto)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$ParentesisCerrado)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$Asterisco)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$Mas)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$Coma)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$Menos)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$Punto)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$Slash)
+outlier_url(dataset = dataset_B,variablA = dataset_B$Peticion,variableB = dataset_B$TotalCaracteres)
+
+```
+

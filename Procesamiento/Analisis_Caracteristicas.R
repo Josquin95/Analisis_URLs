@@ -1,6 +1,6 @@
 # Importacion del dataset
-db_URLB <- read.csv("~/SDCAW/Preprocesamiento/resources/datasetAnomalous.csv", sep=";", comment.char="#")
-db_URLG <- read.csv("~/SDCAW/Preprocesamiento/resources/dataset.csv", sep=";", comment.char="#")
+db_URLB <- read.csv("~/SDCAW/Preprocesamiento/resources/dataset_B.csv", sep=";")
+db_URLG <- read.csv("~/SDCAW/Preprocesamiento/resources/dataset_G.csv", sep=";", comment.char="#")
 
 # Eliminacion de columnas URL, Peticion, host, coneccion, cockie
 column_remove <- c(1,2,24,25,26)
